@@ -9,10 +9,6 @@ Sistema web para gerenciar um petshop: cadastro de **clientes** e **pets**, e ag
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-<!--
-📸 Para adicionar prints do site:
-1. Salve as imagens em docs/screenshots/ (ex.: inicio.png)
-2. Apague este comentário e descomente a seção abaixo.
 
 ## 📸 Telas
 
@@ -109,7 +105,7 @@ Ao excluir um cliente, seus pets e agendamentos também são removidos (`ON DELE
 **1. Clone o repositório**
 
 ```bash
-git clone https://github.com/SEU-USUARIO/petshop-flask.git
+git clone https://github.com/SarahAndreassa/petshop-flask.git
 cd petshop-flask
 ```
 
@@ -207,7 +203,7 @@ Definidos no dicionário `SERVICOS` em `app.py`:
 
 ## 👩‍💻 Autora
 
-**SEU NOME**
+**Sarah Ferreira Andreassa**
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/SEU-PERFIL)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/SEU-USUARIO)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sarahandreassa)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/SarahAndreassa)
