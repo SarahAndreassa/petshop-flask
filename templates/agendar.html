@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Agendar serviço{% endblock %}
+
+{% block conteudo %}
+<section class="formulario">
+    <h1>Agendar serviço</h1>
+
+    <form method="POST">
+        <label for="pet_id">Pet</label>
+        <select id="pet_id" name="pet_id" required>
+            {% for p in pets %}
+                <option value="{{ p.id }}">{{ p.nome }} (dono: {{ p.dono }})</option>
+            {% endfor %}
+        </select>
+
+        <label for="servico">Serviço</label>
+        <select id="servico" name="servico" required>
+            {% for nome, preco in catalogo.items() %}
+                <option value="{{ nome }}">{{ nome }} — {{ preco|moeda }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="data_hora">Data e horário</label>
+        <input type="datetime-local" id="data_hora" name="data_hora" required>
+
+        <label for="observacao">Observação (opcional)</label>
+        <input type="text" id="observacao" name="observacao" maxlength="255" placeholder="Ex.: pet tem medo de secador">
+
+        <div class="acoes">
+            <button type="submit">Agendar</button>
+            <a class="btn btn-claro" href="{{ url_for('servicos') }}">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

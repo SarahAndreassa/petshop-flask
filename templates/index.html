@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block titulo %}Início{% endblock %}
+
+{% block conteudo %}
+<section class="hero">
+    <div>
+        <h1>Bem-vindo ao PetShop</h1>
+        <p>Clientes, pets e serviços do dia, tudo em um só lugar.</p>
+        <div class="acoes">
+            <a class="btn btn-amarelo" href="{{ url_for('agendar') }}">Agendar serviço</a>
+            <a class="btn btn-claro" href="{{ url_for('cliente_form') }}">Novo cliente</a>
+        </div>
+    </div>
+    <div class="hero-emoji" aria-hidden="true">🐶🐱</div>
+</section>
+
+<section class="numeros">
+    <a class="numero" href="{{ url_for('clientes') }}"><strong>{{ totais.clientes }}</strong> clientes</a>
+    <a class="numero" href="{{ url_for('pets') }}"><strong>{{ totais.pets }}</strong> pets</a>
+    <a class="numero" href="{{ url_for('servicos') }}"><strong>{{ totais.agendados }}</strong> serviços agendados</a>
+</section>
+
+<section class="painel">
+    <h2>Próximos serviços</h2>
+    {% if proximos %}
+        <ul class="lista-simples">
+            {% for a in proximos %}
+            <li>
+                <span><strong>{{ a.servico }}</strong> para {{ a.pet }} <small>(dono: {{ a.dono }})</small></span>
+                <span class="data">{{ a.data_hora|dataf }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="vazio">Nenhum serviço agendado. <a href="{{ url_for('agendar') }}">Agende o primeiro</a>.</p>
+    {% endif %}
+</section>
+{% endblock %}

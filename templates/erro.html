@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}Erro no banco{% endblock %}
+
+{% block conteudo %}
+<section class="painel">
+    <h1>Não consegui falar com o banco de dados</h1>
+    <p>Confira estes pontos e recarregue a página:</p>
+    <ul class="dicas">
+        <li>O MySQL está ligado?</li>
+        <li>O arquivo <code>.env</code> tem o usuário e a senha corretos?</li>
+        <li>Você iniciou o site com <code>python app.py</code>? Ele cria as tabelas sozinho.</li>
+    </ul>
+    <p><small>Detalhe técnico: {{ erro }}</small></p>
+</section>
+{% endblock %}

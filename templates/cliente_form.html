@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}{{ 'Editar cliente' if editando else 'Novo cliente' }}{% endblock %}
+
+{% block conteudo %}
+<section class="formulario">
+    <h1>{{ 'Editar cliente' if editando else 'Novo cliente' }}</h1>
+
+    <form method="POST">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" value="{{ cliente.nome or '' }}" required autofocus>
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" name="telefone" value="{{ cliente.telefone or '' }}" placeholder="(11) 99999-9999">
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" value="{{ cliente.email or '' }}" placeholder="nome@email.com">
+
+        <div class="acoes">
+            <button type="submit">Salvar cliente</button>
+            <a class="btn btn-claro" href="{{ url_for('clientes') }}">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

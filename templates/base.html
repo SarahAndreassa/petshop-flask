@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}PetShop{% endblock %} · PetShop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {# Este arquivo é o "molde" de todas as páginas: cabeçalho, mensagens e rodapé.
+       Cada página só preenche o {% block conteudo %}. #}
+    <header class="topo">
+        <a class="logo" href="{{ url_for('inicio') }}">🐾 PetShop</a>
+        <nav>
+            {% set ep = request.endpoint %}
+            <a href="{{ url_for('inicio') }}" class="{{ 'ativo' if ep == 'inicio' }}">Início</a>
+            <a href="{{ url_for('clientes') }}" class="{{ 'ativo' if ep in ('clientes', 'cliente_form') }}">Clientes</a>
+            <a href="{{ url_for('pets') }}" class="{{ 'ativo' if ep in ('pets', 'pet_form') }}">Pets</a>
+            <a href="{{ url_for('servicos') }}" class="{{ 'ativo' if ep in ('servicos', 'agendar') }}">Serviços</a>
+        </nav>
+    </header>
+
+    <main>
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, texto in mensagens %}
+                <div class="aviso aviso-{{ categoria }}" role="status">{{ texto }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <footer class="rodape">PetShop · feito com Flask e MySQL</footer>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block titulo %}Pets{% endblock %}
+
+{% block conteudo %}
+<div class="titulo-pagina">
+    <h1>Pets</h1>
+    <a class="btn" href="{{ url_for('pet_form') }}">Novo pet</a>
+</div>
+
+{% if pets %}
+<div class="tabela-rolagem">
+<table>
+    <thead><tr><th>Pet</th><th>Espécie</th><th>Raça</th><th>Dono</th><th></th></tr></thead>
+    <tbody>
+    {% for p in pets %}
+        <tr>
+            <td data-rotulo="Pet"><strong>{{ p.nome }}</strong></td>
+            <td data-rotulo="Espécie">{{ p.especie or '—' }}</td>
+            <td data-rotulo="Raça">{{ p.raca or '—' }}</td>
+            <td data-rotulo="Dono">{{ p.dono }}</td>
+            <td class="acoes-linha">
+                <a class="btn btn-pequeno btn-claro" href="{{ url_for('pet_form', id=p.id) }}">Editar</a>
+                <form method="POST" action="{{ url_for('pet_excluir', id=p.id) }}"
+                      data-confirmar="Excluir {{ p.nome }}? Os agendamentos dele também serão apagados.">
+                    <button class="btn-pequeno btn-perigo" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+    <p class="vazio">Nenhum pet cadastrado ainda. <a href="{{ url_for('pet_form') }}">Cadastre o primeiro</a>.</p>
+{% endif %}
+{% endblock %}

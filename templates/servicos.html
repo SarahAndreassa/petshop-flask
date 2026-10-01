@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block titulo %}Serviços{% endblock %}
+
+{% block conteudo %}
+<div class="titulo-pagina">
+    <h1>Serviços</h1>
+    <a class="btn" href="{{ url_for('agendar') }}">Agendar serviço</a>
+</div>
+
+<ul class="catalogo">
+    {% for nome, preco in catalogo.items() %}
+        <li><strong>{{ nome }}</strong> {{ preco|moeda }}</li>
+    {% endfor %}
+</ul>
+
+{% if agendamentos %}
+<div class="tabela-rolagem">
+<table>
+    <thead><tr><th>Quando</th><th>Serviço</th><th>Pet</th><th>Valor</th><th>Situação</th><th></th></tr></thead>
+    <tbody>
+    {% for a in agendamentos %}
+        <tr>
+            <td data-rotulo="Quando">{{ a.data_hora|dataf }}</td>
+            <td data-rotulo="Serviço"><strong>{{ a.servico }}</strong>{% if a.observacao %}<br><small>{{ a.observacao }}</small>{% endif %}</td>
+            <td data-rotulo="Pet">{{ a.pet }} <small>({{ a.dono }})</small></td>
+            <td data-rotulo="Valor">{{ a.valor|moeda }}</td>
+            <td data-rotulo="Situação"><span class="selo {{ 'selo-ok' if a.status == 'Concluído' }}">{{ a.status }}</span></td>
+            <td class="acoes-linha">
+                {% if a.status == 'Agendado' %}
+                <form method="POST" action="{{ url_for('concluir', id=a.id) }}">
+                    <button class="btn-pequeno" type="submit">Concluir</button>
+                </form>
+                {% endif %}
+                <form method="POST" action="{{ url_for('agendamento_excluir', id=a.id) }}"
+                      data-confirmar="Excluir este agendamento?">
+                    <button class="btn-pequeno btn-perigo" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+    <p class="vazio">Nenhum serviço agendado ainda. <a href="{{ url_for('agendar') }}">Agende o primeiro</a>.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}{{ 'Editar pet' if editando else 'Novo pet' }}{% endblock %}
+
+{% block conteudo %}
+<section class="formulario">
+    <h1>{{ 'Editar pet' if editando else 'Novo pet' }}</h1>
+
+    <form method="POST">
+        <label for="nome">Nome do pet</label>
+        <input type="text" id="nome" name="nome" value="{{ pet.nome or '' }}" required autofocus>
+
+        <label for="especie">Espécie</label>
+        <select id="especie" name="especie">
+            {% for e in especies %}
+                <option value="{{ e }}" {{ 'selected' if pet.especie == e }}>{{ e }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="raca">Raça</label>
+        <input type="text" id="raca" name="raca" value="{{ pet.raca or '' }}">
+
+        <label for="cliente_id">Dono</label>
+        <select id="cliente_id" name="cliente_id" required>
+            {% for d in donos %}
+                <option value="{{ d.id }}" {{ 'selected' if pet.cliente_id == d.id }}>{{ d.nome }}</option>
+            {% endfor %}
+        </select>
+
+        <div class="acoes">
+            <button type="submit">Salvar pet</button>
+            <a class="btn btn-claro" href="{{ url_for('pets') }}">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
