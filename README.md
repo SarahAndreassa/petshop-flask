@@ -13,7 +13,7 @@ Sistema web para gerenciar um petshop: cadastro de **clientes** e **pets**, e ag
 ## 📸 Telas
 
 ![Tela inicial](docs/screenshots/inicio.png)
--->
+
 
 ## ✨ Funcionalidades
 
